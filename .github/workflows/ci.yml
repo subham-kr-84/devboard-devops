@@ -70,9 +70,11 @@ jobs:
         run: go fmt ./...
         working-directory: backend
 
-      - name: run vet
-        run: go vet ./...
-        working-directory: backend
+      - name: Run golangci-lint
+        uses: golangci/golangci-lint-action@v9
+        with:
+          version: v2.13
+          working-directory: backend
 
       - name: run tests
         run: go test ./...
