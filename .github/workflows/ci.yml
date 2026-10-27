@@ -1,0 +1,22 @@
+# Goals- To lint, build, test the code for frontend and backend and push its image to Dockerhub.
+
+name: CI
+
+on:
+	push:
+
+jobs:
+  	frontend:
+		runs-on: ubuntu-latest
+
+	  	steps:
+			- name: 
+			- build
+			- test
+			- push
+	backend:
+  		steps:
+			- lint
+			- build
+			- test
+			- push
