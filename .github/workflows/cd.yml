@@ -18,6 +18,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7
 
+      - name: copy .env file
+        run: |
+          if [ ! -f docker/.env ]; then
+            cp docker/.env.example docker/.env
+          fi
+
       - name: docker setup(login)
         uses: docker/login-action@v2
         with:
@@ -26,5 +32,9 @@ jobs:
 
       - name: deploy the containers with docker-compose
         run: |
-          docker-compose pull
-          docker-compose up -d
+          docker-compose pull -f docker/docker-compose.yml
+          docker-compose -f docker/docker-compose.yml up -d --remove-orphans
+
+      - name: verify deployment
+        run: |
+          docker-compose -f docker/docker-compose.yml ps
