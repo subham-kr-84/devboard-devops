@@ -32,9 +32,9 @@ jobs:
 
       - name: deploy the containers with docker-compose
         run: |
-          docker-compose pull -f docker/docker-compose.yml
-          docker-compose -f docker/docker-compose.yml up -d --remove-orphans
+          docker compose pull -f docker/docker-compose.yml
+          docker compose -f docker/docker-compose.yml up -d --remove-orphans
 
       - name: verify deployment
         run: |
-          docker-compose -f docker/docker-compose.yml ps
+          docker compose -f docker/docker-compose.yml ps
