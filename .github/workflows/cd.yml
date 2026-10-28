@@ -29,7 +29,7 @@ jobs:
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-
+# Deploy the containers using docker-compose
       - name: deploy the containers with docker-compose
         run: |
           docker compose -f docker/docker-compose.yml pull

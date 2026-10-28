@@ -23,7 +23,7 @@ services:
         
   backend:
     container_name: "backend"
-    build: ./backend
+    image: krsubham84/devboard-backend:latest
 
     environment: 
       PORT: "${BACKEND_PORT}"
@@ -39,7 +39,7 @@ services:
 
   frontend:
     container_name: "frontend"  
-    build: ./frontend
+    image: krsubham84/devboard-frontend:latest
     ports: 
       - "8082:4173"
     depends_on: 
