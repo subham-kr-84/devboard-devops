@@ -1,0 +1,30 @@
+# goals- to deploy the built images from CI steps once the CI pipeline is successful.
+
+name: CD
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: docker setup(login)
+        uses: docker/login-action@v2
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: deploy the containers with docker-compose
+        run: |
+          docker-compose pull
+          docker-compose up -d
