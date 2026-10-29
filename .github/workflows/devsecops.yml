@@ -20,3 +20,4 @@ jobs:
 
   docker-scan:
     uses: ./.github/workflows/docker-scan.yml
+    secrets: inherit

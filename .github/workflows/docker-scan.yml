@@ -19,14 +19,7 @@ jobs:
         uses: hadolint/hadolint-action@v3.1.0
         with:
           dockerfile: ${{ matrix.folder }}/Dockerfile
-
-# Check Docker credentials before proceeding with the build and scan steps
-
-      - name: Check Docker credentials configuration
-        run: |
-         echo "Docker username configured: ${{ vars.DOCKERHUB_USERNAME != '' }}"
-         echo "Docker password configured: ${{ secrets.DOCKERHUB_PASSWORD != '' }}"    
-
+      
       - name: docker setup (login)
         uses: docker/login-action@v4
         with:
