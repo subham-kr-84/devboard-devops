@@ -8,7 +8,7 @@ on:
 
 jobs:
 # Jobs for the DevSecOps pipeline 
-
+# Jobs for the DevSecOps pipeline include code quality, secret scanning, and dependency scanning.
   code-quality:
     uses: ./.github/workflows/code-quality.yml
 
