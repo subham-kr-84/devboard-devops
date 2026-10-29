@@ -4,7 +4,7 @@ name: DevSecOps
 
 on:
   push:
-    branches: [main]
+    branches: [fix/npm-audit-vulnerabilities]
 
 jobs:
 # Jobs for the DevSecOps pipeline 
