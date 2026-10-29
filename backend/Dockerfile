@@ -13,7 +13,7 @@ RUN CGO_ENABLED=0 go build -o devboard-backend .
 
 # Stage-2: Runner stage
 
-FROM alpine:latest
+FROM alpine:3.23
 
 WORKDIR /app
 
@@ -23,6 +23,6 @@ COPY --from=builder /app/devboard-backend ./devboard-backend
 
 USER app
 
-Expose 8080
+EXPOSE 8080
 
 ENTRYPOINT ["./devboard-backend"]
