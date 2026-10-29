@@ -37,15 +37,17 @@ jobs:
 
       - name: run govulncheck
         continue-on-error: true
-        run: govulncheck ./... > reports/govulncheck-report.txt
         working-directory: backend
+        run: |
+         mkdir -p reports
+         govulncheck ./... > reports/govulncheck-report.txt
 
       - name: upload report to artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: dependency-scan-report
-          path: reports/govulncheck-report.txt
+          path: backend/reports/govulncheck-report.txt
           retention-days: 7
 
 
