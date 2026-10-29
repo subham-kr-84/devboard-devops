@@ -20,6 +20,8 @@ jobs:
         with:
           dockerfile: ${{ matrix.folder }}/Dockerfile
 
+# Check Docker credentials before proceeding with the build and scan steps
+
       - name: Check Docker credentials configuration
         run: |
          echo "Docker username configured: ${{ vars.DOCKERHUB_USERNAME != '' }}"
