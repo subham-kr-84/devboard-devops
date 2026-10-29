@@ -5,6 +5,11 @@ name: CI
 on:
   push:
     branches: [main]
+    paths:
+      - 'backend/**'
+      - 'frontend/**'
+      - 'docker/**'
+      - 'init/**'
 
 jobs:
   frontend:
