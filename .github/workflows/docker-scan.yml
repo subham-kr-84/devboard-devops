@@ -20,6 +20,11 @@ jobs:
         with:
           dockerfile: ${{ matrix.folder }}/Dockerfile
 
+      - name: Check Docker credentials configuration
+        run: |
+         echo "Docker username configured: ${{ vars.DOCKERHUB_USERNAME != '' }}"
+         echo "Docker password configured: ${{ secrets.DOCKERHUB_PASSWORD != '' }}"    
+
       - name: docker setup (login)
         uses: docker/login-action@v4
         with:
