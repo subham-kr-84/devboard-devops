@@ -1,0 +1,37 @@
+#goal- to test frontend and backend code
+
+name: Code Test
+
+on:
+  workflow_call:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: run test
+        run: npm run test
+        working-directory: frontend
+
+      - name: Set up go
+        uses: actions/setup-go@v7
+        with:
+          go-version: '1.25'
+          go-version-file: 'backend/go.mod'
+          check-latest: false
+          cache: true
+          cache-dependency-path: backend/go.sum
+
+      - name: run test
+        run: go test ./...
+        working-directory: backend              
