@@ -1,0 +1,23 @@
+# goals- to run sonar qube scan to see threats on the codebase and generate a report
+
+name: SonarQube Scan
+
+on:
+  workflow_call:
+
+jobs:
+  sonar-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+   # adding sonar scan action to run sonar scan on the codebase and generate a report     
+      
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v8.4.0
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
