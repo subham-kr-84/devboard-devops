@@ -1,5 +1,5 @@
 # goals- to run end to end devsecops pipeline
-
+#--------CI-----------------------------------------------
 name: DevSecOps
 
 on:
@@ -32,4 +32,11 @@ jobs:
   docker-push:
     uses: ./.github/workflows/docker-push.yml
     needs: [code-quality, secret-scanning, dependency-scan, docker-scan, sonar-scan, code-test]
-    secrets: inherit    
+    secrets: inherit
+
+#-----------------------CD-----------------------------------------------
+
+  deploy:
+    uses: ./.github/workflows/deploy.yml
+    needs: docker-push
+    secrets: inherit
