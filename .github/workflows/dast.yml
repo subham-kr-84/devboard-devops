@@ -1,0 +1,25 @@
+#goal- to use OWASP ZAP to perform DAST on the application
+
+name: OWASP ZAP DAST Scan
+
+on:
+  workflow_call:
+
+jobs:
+  dast:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: wait for services to be healthy
+        run: |
+          timeout=60s sh -c 'until curl -s http://${{ secrets.EC2_HOST }}:8082 > /dev/null; do sleep 2; done' 
+
+      - name: OWASP ZAP BASELINE SCAN
+        uses: zaproxy/action-baseline@v0.14.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          target: 'http://${{ secrets.EC2_HOST }}:8082'
+          fail_action: false
+          allow_issue_writing: false      
