@@ -19,7 +19,7 @@ jobs:
           cache-dependency-path: frontend/package-lock.json
 
       - name: run dependency scan for node.js
-        run: npm audit
+        run: npm audit --legacy-peer-deps
         working-directory: frontend
 
       - name: Set up go
